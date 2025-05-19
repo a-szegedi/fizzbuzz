@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="fizz"/><br>
+    <input id="buzz"/><br>
+    <input id="grenze"><br>
+
+    <button onclick="ausgabe()">Ausgabe</button>
+    <p id="hier1"></p>
+    <p id="hier"></p>
+</body>
+<script>
+    function ausgabe() {
+        const fizz = document.getElementById("fizz").value;
+        const buzz = document.getElementById("buzz").value;
+        const grenze = document.getElementById("grenze").value;
+        const erg1 = [fizz,buzz,grenze];
+        const erg = [];
+        let element = "";
+        for (let index = 1; index < grenze; index++) {
+            element = "";
+            leer = true;
+            if(index % fizz == 0){
+                element += "Fizz";
+            }
+            if(index % buzz == 0){
+                element += "Buzz";
+            }
+            if (element.length == 0) {
+                element += index;
+            }
+            erg.push(element);
+             
+            
+        }
+
+        document.getElementById("hier1").innerHTML = erg1;
+        document.getElementById("hier").innerHTML = erg;
+    }
+</script>
+</html>

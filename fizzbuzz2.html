@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="fizz"/><br>
+    <input id="buzz"/><br>
+    <input id="von"><br>
+    <input id="bis"><br>
+
+    <button onclick="ausgabe()">Ausgabe</button>
+    <p id="reste">Reste:</p>
+    <p id="ergebnis"Ergebnis:></p>
+</body>
+<script>
+    function ausgabe() {
+        const fizz = document.getElementById("fizz").value;
+        const buzz = document.getElementById("buzz").value;
+        const von = document.getElementById("von").value;
+        const bis = document.getElementById("bis").value;
+        const erg = [];
+        let element = "";
+
+        if(teilerfremd(fizz,buzz)){
+            
+        }
+
+
+    function reste(fizz,buzz){
+        let arr = [];
+        let restf = 0;
+        let restb = 0;
+        let element = "";
+        for(let i = 1; i <= fizz * buzz; i++){
+            element = "";
+            if(restf++ == fizz){
+                element += "Fizz";
+                restf = 0;
+            }
+            if(restb++ == buzz){
+                element += "Buzz";
+                restb = 0;
+            }
+            arr.push(element);
+        }
+        return arr;
+    }
+    function teilerfremd(fizz,buzz){
+
+        let minFB = Math.min(fizz,buzz);
+        let maxFB = Math.max(fizz,buzz);
+        for (let index = 1; index < minFB; index++){
+            if((index % minFB == 0) && (index % maxFB == 0)){
+                return false;
+            }
+        }
+        return true;
+    }
+            
+        document.getElementById("hier").innerHTML = erg;
+    }
+</script>
+</html>

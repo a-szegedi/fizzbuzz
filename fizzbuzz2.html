@@ -12,8 +12,8 @@
     <input id="bis"><br>
 
     <button onclick="ausgabe()">Ausgabe</button>
-    <p id="reste">Reste:</p>
-    <p id="ergebnis"Ergebnis:></p>
+    <p id="reste">Reste:\t</p>
+    <p id="ergebnis">Ergebnis:\t</p>
 </body>
 <script>
     function ausgabe() {
@@ -24,8 +24,12 @@
         const erg = [];
         let element = "";
 
-        if(teilerfremd(fizz,buzz)){
-            
+        if(fizz % buzz == 0){
+            document.getElementById("reste").innerHTML = `${buzz} ist ein Vielfaches von ${fizz}.`;
+        }else{
+            const reste = reste(fizz, buzz);
+            document.getElementById("reste").innerHTML += reste;
+            const start = von % (fizz * buzz);
         }
 
 
@@ -48,17 +52,9 @@
         }
         return arr;
     }
-    function teilerfremd(fizz,buzz){
 
-        let minFB = Math.min(fizz,buzz);
-        let maxFB = Math.max(fizz,buzz);
-        for (let index = 1; index < minFB; index++){
-            if((index % minFB == 0) && (index % maxFB == 0)){
-                return false;
-            }
-        }
-        return true;
-    }
+    
+    
             
         document.getElementById("hier").innerHTML = erg;
     }

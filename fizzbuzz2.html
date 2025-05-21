@@ -6,49 +6,60 @@
     <title>Document</title>
 </head>
 <body>
-    <input id="fizz"/><br>
-    <input id="buzz"/><br>
-    <input id="von"><br>
-    <input id="bis"><br>
-
+    <p>Fizz:    
+    <input id="fizz"/></p>
+    <p>Buzz:    <input id="buzz"/></p>
+    <p>von:    <input id="von"></p>
+    <p>bis:    <input id="bis"></p>
+    
     <button onclick="ausgabe()">Ausgabe</button>
-    <p id="reste">Reste:\t</p>
-    <p id="ergebnis">Ergebnis:\t</p>
+    <p>Ergebnis:</p>
+    <p id="ergebnis"></p>
 </body>
 <script>
     function ausgabe() {
         const fizz = document.getElementById("fizz").value;
         const buzz = document.getElementById("buzz").value;
-        const von = document.getElementById("von").value;
-        const bis = document.getElementById("bis").value;
+        const von = Number(document.getElementById("von").value);
+        const bis = Number(document.getElementById("bis").value);
         const erg = [];
         let element = "";
 
-        if(fizz % buzz == 0){
-            document.getElementById("reste").innerHTML = `${buzz} ist ein Vielfaches von ${fizz}.`;
+        if((fizz % buzz == 0) || (buzz % fizz == 0)){
+            document.getElementById("reste").innerHTML = `${Math.max(fizz,buzz)} ist ein Vielfaches von ${Math.min(fizz,buzz)}.`;
         }else{
-            const reste = reste(fizz, buzz);
-            document.getElementById("reste").innerHTML += reste;
-            const start = von % (fizz * buzz);
+            const restarr = reste(fizz, buzz);
+            let index =  (von >= (fizz * buzz))? (von % (fizz * buzz)) : von;
+            for(let i = von; i <= bis; i++){                
+                erg.push((restarr[index-1] == "")? i : restarr[index-1]);
+                index++;
+                if(index > (fizz * buzz)){
+                index = 1;
+                }
+            }
+            
+            document.getElementById("ergebnis").innerHTML = erg;
         }
 
 
     function reste(fizz,buzz){
-        let arr = [];
-        let restf = 0;
-        let restb = 0;
+        const arr = [];
+        let restf = 1;
+        let restb = 1;
         let element = "";
         for(let i = 1; i <= fizz * buzz; i++){
             element = "";
-            if(restf++ == fizz){
+            if(restf == fizz){
                 element += "Fizz";
                 restf = 0;
             }
-            if(restb++ == buzz){
+            if(restb == buzz){
                 element += "Buzz";
                 restb = 0;
             }
             arr.push(element);
+            restf++;
+            restb++;            
         }
         return arr;
     }
